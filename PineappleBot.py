@@ -1,10 +1,13 @@
 import sys
+import logging
 import discord
 from discord.ext import commands
 
 description = 'PineappleBot the Best Discord Bot!'
 bot_prefix = '!'
 bot_version = '0.0.1 alpha'
+
+logging.basicConfig(level=logging.INFO)
 
 client = commands.Bot(description=description, command_prefix=bot_prefix)
 
