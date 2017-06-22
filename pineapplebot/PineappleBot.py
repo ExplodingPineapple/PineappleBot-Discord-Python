@@ -40,13 +40,18 @@ async def add(left: int, right: int):
 
 @bot.command()
 async def addadd(text: str):
-    """Adds add to the input text."""
+    """Adds Add to the input text."""
     await bot.say("Add " + text)
 
 @bot.command()
-async def addnadd(left: int, right: int):
-    """Adds two numbers together and adds add to the input text."""
+async def addnaddadd(left: int, right: int):
+    """Adds two numbers together and adds Add."""
     await bot.say("Add " + str(left + right))
+
+@bot.command()
+async def addnaddaddnadd(left: int, right: int, text: str):
+    """Adds two numbers together and adds Add, then adds that to the input text."""
+    await bot.say("Add {0} {1}".format(str(left + right), text))
 
 
 bot.run(config.bot_token)
