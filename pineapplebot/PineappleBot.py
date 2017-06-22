@@ -1,8 +1,10 @@
 import sys
 import logging
-import discord
+import random
+import asyncio
 import config
 import plugins.stream_alerts
+import discord
 from discord.ext import commands
 
 DESCRIPTION = 'Pineapplebot the Best Discord bot!'
@@ -30,5 +32,11 @@ async def ping(ctx):
 async def version(ctx):
     await bot.say('PineappleBot version : {}'.format(BOT_VERSION))
     await bot.say('Running on Python version : {}'.format(sys.version))
+
+@bot.command()
+async def add(left: int, right: int):
+    """Adds two numbers together."""
+    await bot.say(left + right)
+
 
 bot.run(config.bot_token)
