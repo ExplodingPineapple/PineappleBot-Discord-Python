@@ -1,6 +1,8 @@
 import sys
 import logging
 import discord
+import pineapplebot.config
+import commands.version
 from discord.ext import commands
 
 description = 'PineappleBot the Best Discord Bot!'
@@ -24,9 +26,4 @@ async def on_ready():
         await client.say('Pong!')
         await client.say(ctx.message.author.mention + ' I\'m watching you buddy!')
 
-    @client.command(pass_context=True)
-    async def version(ctx):
-        await client.say('PineappleBot version : {}'.format(bot_version))
-        await client.say('Running on Python version : {}'.format(sys.version))
-
-client.run('token')
+client.run(bot_token)
