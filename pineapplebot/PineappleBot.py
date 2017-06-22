@@ -1,18 +1,20 @@
+"""A dumb bot."""
 import sys
 import logging
 import discord
 from discord.ext import commands
 
-description = 'PineappleBot the Best Discord Bot!'
-bot_prefix = '!'
-bot_version = '0.0.1 alpha'
+DESCRIPTION = 'PineappleBot the Best Discord Bot!'
+BOT_PREFIX = '!'
+BOT_VERSION = '0.0.1 alpha'
 
 logging.basicConfig(level=logging.INFO)
 
-client = commands.Bot(description=description, command_prefix=bot_prefix)
+client = commands.Bot(description=DESCRIPTION, command_prefix=BOT_PREFIX)
 
 @client.event
 async def on_ready():
+    """Function to handle the bot becoming ready."""
     print('Logged In')
     print('Name : {}'.format(client.user.name))
     print('ID : {}'.format(client.user.id))
@@ -21,12 +23,14 @@ async def on_ready():
 
 @client.command(pass_context=True)
 async def ping(ctx):
+    """Simple command to check if the bot is alive."""
     await client.say('Pong!')
     await client.say(ctx.message.author.mention + ' I\'m watching you buddy!')
 
 @client.command(pass_context=True)
-async def version(ctx):
-    await client.say('PineappleBot version : {}'.format(bot_version))
+async def version():
+    """Check the bot version."""
+    await client.say('PineappleBot version : {}'.format(BOT_VERSION))
     await client.say('Running on Python version : {}'.format(sys.version))
 
 @client.command()
