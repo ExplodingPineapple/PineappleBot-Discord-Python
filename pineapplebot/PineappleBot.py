@@ -22,6 +22,7 @@ async def on_ready():
     @client.command(pass_context=True)
     async def ping(ctx):
         await client.say('Pong!')
+        await client.say(ctx.message.author.mention + ' I\'m watching you buddy!')
 
     @client.command(pass_context=True)
     async def version(ctx):
