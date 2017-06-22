@@ -2,18 +2,15 @@ import sys
 import logging
 import discord
 import config
-import commands
-#import commands
-#from commands import version
+import botcommands.version
 from discord.ext import commands
 
-description = 'PineappleBot the Best Discord Bot!'
-bot_prefix = '!'
-bot_version = '0.0.1 alpha'
+DESCRIPTION = 'PineappleBot the Best Discord Bot!'
+BOT_PREFIX = '!'
 
 logging.basicConfig(level=logging.INFO)
 
-client = commands.Bot(description=description, command_prefix=bot_prefix)
+client = commands.Bot(description=DESCRIPTION, command_prefix=BOT_PREFIX)
 
 @client.event
 async def on_ready():
