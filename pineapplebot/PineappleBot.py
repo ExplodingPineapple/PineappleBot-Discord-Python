@@ -5,30 +5,30 @@ import config
 import plugins.stream_alerts
 from discord.ext import commands
 
-DESCRIPTION = 'PineappleBot the Best Discord Bot!'
+DESCRIPTION = 'Pineapplebot the Best Discord bot!'
 BOT_PREFIX = '!'
 BOT_VERSION = '0.0.1 alpha'
 
 logging.basicConfig(level=logging.INFO)
 
-client = commands.Bot(description=DESCRIPTION, command_prefix=BOT_PREFIX)
+bot = commands.Bot(description=DESCRIPTION, command_prefix=BOT_PREFIX)
 
-@client.event
+@bot.event
 async def on_ready():
     print('Logged In')
-    print('Name : {}'.format(client.user.name))
-    print('ID : {}'.format(client.user.id))
+    print('Name : {}'.format(bot.user.name))
+    print('ID : {}'.format(bot.user.id))
     print('Discord Library : {}'.format(discord.__version__))
     print('Python Version : {}'.format(sys.version))
 
-@client.command(pass_context=True)
+@bot.command(pass_context=True)
 async def ping(ctx):
-    await client.say('Pong!')
-    await client.say(ctx.message.author.mention + ' I\'m watching you buddy!')
+    await bot.say('Pong!')
+    await bot.say(ctx.message.author.mention + ' I\'m watching you buddy!')
 
-@client.command(pass_context=True)
+@bot.command(pass_context=True)
 async def version(ctx):
-    await client.say('PineappleBot version : {}'.format(BOT_VERSION))
-    await client.say('Running on Python version : {}'.format(sys.version))
+    await bot.say('PineappleBot version : {}'.format(BOT_VERSION))
+    await bot.say('Running on Python version : {}'.format(sys.version))
 
-client.run(config.bot_token)
+bot.run(config.bot_token)
