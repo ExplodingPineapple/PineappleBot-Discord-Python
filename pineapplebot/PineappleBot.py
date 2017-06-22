@@ -1,6 +1,10 @@
 import sys
 import logging
 import discord
+import config
+import commands
+#import commands
+#from commands import version
 from discord.ext import commands
 
 description = 'PineappleBot the Best Discord Bot!'
@@ -26,4 +30,4 @@ async def on_ready():
 
 
 
-client.run(bot_token)
+client.run(config.bot_token)
