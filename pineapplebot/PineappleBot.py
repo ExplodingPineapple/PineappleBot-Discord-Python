@@ -1,8 +1,6 @@
 import sys
 import logging
 import discord
-import pineapplebot.config
-import commands.version
 from discord.ext import commands
 
 description = 'PineappleBot the Best Discord Bot!'
@@ -25,5 +23,7 @@ async def on_ready():
     async def ping(ctx):
         await client.say('Pong!')
         await client.say(ctx.message.author.mention + ' I\'m watching you buddy!')
+
+
 
 client.run(bot_token)
