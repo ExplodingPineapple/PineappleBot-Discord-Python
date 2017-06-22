@@ -2,7 +2,7 @@ import sys
 import logging
 import discord
 import config
-import botcommands.version
+import plugins.stream_alerts
 from discord.ext import commands
 
 DESCRIPTION = 'PineappleBot the Best Discord Bot!'
