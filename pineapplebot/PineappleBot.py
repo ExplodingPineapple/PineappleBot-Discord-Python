@@ -3,6 +3,7 @@ import sys
 import logging
 import discord
 from discord.ext import commands
+import config
 
 DESCRIPTION = 'PineappleBot the Best Discord Bot!'
 BOT_PREFIX = '!'
@@ -14,7 +15,7 @@ client = commands.Bot(description=DESCRIPTION, command_prefix=BOT_PREFIX)
 
 @client.event
 async def on_ready():
-    """Function to handle the bot becoming ready."""
+    """Function to handle the bot entering a ready state."""
     print('Logged In')
     print('Name : {}'.format(client.user.name))
     print('ID : {}'.format(client.user.id))
@@ -34,6 +35,11 @@ async def version():
     await client.say('Running on Python version : {}'.format(sys.version))
 
 @client.command()
+async def add(left: int, right: int):
+    """Adds two numbers together."""
+    await client.say("{0} + {1} = {2}".format(left, right, left + right))
+
+@client.command()
 async def addadd(text: str):
     """Adds Add to the input text."""
     await client.say("Add " + text)
@@ -48,4 +54,4 @@ async def addnaddaddnadd(left: int, right: int, text: str):
     """Adds two numbers together and adds Add, then adds that to the input text."""
     await client.say("Add {0} {1}".format(str(left + right), text))
 
-client.run('token')
+client.run(config.BOT_TOKEN)
