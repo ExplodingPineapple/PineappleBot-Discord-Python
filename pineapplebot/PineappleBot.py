@@ -38,5 +38,10 @@ async def add(left: int, right: int):
     """Adds two numbers together."""
     await bot.say(left + right)
 
+@bot.command()
+async def addadd(text: str):
+    """Adds add to the input text."""
+    await bot.say("add " + text)
+
 
 bot.run(config.bot_token)
