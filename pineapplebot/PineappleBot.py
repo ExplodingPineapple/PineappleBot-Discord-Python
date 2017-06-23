@@ -39,7 +39,7 @@ async def version():
 
 @client.command(pass_context=True)
 async def randomword(ctx):
-    """Posts random word from world site"""
+    """Posts random word from word site"""
     await client.send_typing(ctx.message.channel)
     word_site = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
     response = request.urlopen(word_site)
@@ -47,6 +47,22 @@ async def randomword(ctx):
     words = txt.splitlines()
     word = random.choice(words).decode('UTF-8')
     await client.say(word)
+
+@client.command(pass_context=True)
+async def randomwords(ctx, number: int):
+    """Posts random words from word site"""
+    if number < 1 or number > 50:
+        await client.say("I'm not giving you {0} random words! I'm not that dumb!".format(number))
+        return
+    await client.send_typing(ctx.message.channel)
+    word_site = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
+    response = request.urlopen(word_site)
+    txt = response.read()
+    words = txt.splitlines()
+    response = ""
+    for something in range(number):
+        response = "{0} {1}".format(response, random.choice(words).decode('UTF-8'))
+    await client.say(response)
 
 addingcommands.registeraddingcommands(client)
 
