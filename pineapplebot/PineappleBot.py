@@ -11,7 +11,7 @@ import discord
 from discord.ext import commands
 
 DESCRIPTION = 'Pineapplebot the Best Discord bot!'
-BOT_PREFIX = '!'
+BOT_PREFIX = '~'
 BOT_VERSION = '0.0.1 alpha'
 
 logging.basicConfig(level=logging.INFO)
@@ -72,6 +72,20 @@ async def triggered(ctx):
     """Posts triggered meme"""
     em = discord.Embed(title='Triggered')
     em.set_image(url='https://media.giphy.com/media/vk7VesvyZEwuI/giphy.gif')
+    await client.send_message(ctx.message.channel, embed=em)
+
+@client.command(pass_context=True)
+async def archlinux(ctx):
+    """Archlinux"""
+    em = discord.Embed()
+    em.set_image(url='http://i.imgur.com/2yLkHRM.png')
+    await client.send_message(ctx.message.channel, embed=em)
+
+@client.command(pass_context=True)
+async def facepalm(ctx):
+    """facepalm"""
+    em = discord.Embed()
+    em.set_image(url='https://media.giphy.com/media/3og0INyCmHlNylks9O/giphy.gif')
     await client.send_message(ctx.message.channel, embed=em)
 
 client.run(config.bot_token)
