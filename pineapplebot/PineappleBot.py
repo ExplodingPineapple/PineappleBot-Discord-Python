@@ -58,6 +58,7 @@ async def count():
 async def randomword(ctx):
     """Posts random word from world site"""
     await client.send_typing(ctx.message.channel)
+<<<<<<< HEAD
     #word_site = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
     #response = urllib.request.urlopen(word_site)
     #txt = response.read()
@@ -65,6 +66,13 @@ async def randomword(ctx):
     word_file = "words"
     words = open(word_file).read().splitlines()
     word = random.choice(words)
+=======
+    word_site = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
+    response = urllib.request.urlopen(word_site)
+    txt = response.read()
+    WORDS = txt.splitlines()
+    word = str(random.choice(WORDS))
+>>>>>>> abfe362f8bc37076ea0633008e9d386386043f11
     await client.say(word)
 
 @client.command(pass_context=True)
