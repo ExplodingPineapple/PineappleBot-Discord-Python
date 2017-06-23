@@ -1,7 +1,7 @@
 """A dumb bot."""
 import sys
 import logging
-import urllib
+from urllib import request
 import random
 import discord
 from discord.ext import commands
@@ -41,7 +41,7 @@ async def randomword(ctx):
     """Posts random word from world site"""
     await client.send_typing(ctx.message.channel)
     word_site = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
-    response = urllib.request.urlopen(word_site)
+    response = request.urlopen(word_site)
     txt = response.read()
     WORDS = txt.splitlines()
     word = random.choice(WORDS)
