@@ -61,7 +61,7 @@ async def randomword(ctx):
     response = urllib.request.urlopen(word_site)
     txt = response.read()
     WORDS = txt.splitlines()
-    word = random.choice(WORDS)
+    word = str(random.choice(WORDS))
     await client.say(word)
 
 @client.command(pass_context=True)
