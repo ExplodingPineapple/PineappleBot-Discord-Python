@@ -3,6 +3,7 @@ import logging
 import random
 import asyncio
 import time
+import urllib.request
 import config
 import plugins.stream_alerts
 import discord
@@ -14,42 +15,60 @@ BOT_VERSION = '0.0.1 alpha'
 
 logging.basicConfig(level=logging.INFO)
 
-bot = commands.Bot(description=DESCRIPTION, command_prefix=BOT_PREFIX)
+client = commands.Bot(description=DESCRIPTION, command_prefix=BOT_PREFIX)
 
-@bot.event
+@client.event
 async def on_ready():
     """Prints to terminal when bot is ready"""
     print('Logged In')
-    print('Name : {}'.format(bot.user.name))
-    print('ID : {}'.format(bot.user.id))
+    print('Name : {}'.format(client.user.name))
+    print('ID : {}'.format(client.user.id))
     print('Discord Library : {}'.format(discord.__version__))
     print('Python Version : {}'.format(sys.version))
 
-@bot.command(pass_context=True)
+@client.command(pass_context=True)
 async def ping(ctx):
     """Simple ping pong command to test the bot"""
-    await bot.say('Pong!')
-    await bot.say(ctx.message.author.mention + ' I\'m watching you buddy!')
+    await client.say('Pong!')
+    await client.say(ctx.message.author.mention + ' I\'m watching you buddy!')
 
-@bot.command(pass_context=True)
+@client.command(pass_context=True)
 async def version():
-    """Replys in chat with bot's version info"""
-    await bot.say('PineappleBot version : {}'.format(BOT_VERSION))
-    await bot.say('Running on Python version : {}'.format(sys.version))
+    """Replys in chat with client's version info"""
+    await client.say('PineappleBot version : {}'.format(BOT_VERSION))
+    await client.say('Running on Python version : {}'.format(sys.version))
 
-@bot.command()
+@client.command()
 async def add(left: int, right: int):
     """Adds two numbers together."""
-    await bot.say(left + right)
+    await client.say(left + right)
 
-@bot.command()
+@client.command()
 async def count():
-    """Counts to ten."""
+    """Counts up."""
     COUNT = 1
     while COUNT <= 5:
-        await bot.say(COUNT)
+        await client.say(COUNT)
         COUNT = COUNT + 1
         time.sleep(1)
-    await bot.say("Finished!")
+    await client.say("Finished!")
 
-bot.run(config.bot_token)
+@client.command(pass_context=True)
+async def randomword(parameter_list):
+    """Posts random word from world site"""
+    word_site = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
+    response = urllib.request.urlopen(word_site)
+    txt = response.read()
+    WORDS = txt.splitlines()
+    word = random.choice(WORDS)
+    await client.say(word)
+    
+
+@client.command(pass_context=True)
+async def triggered(ctx):
+    """Posts triggered meme"""
+    em = discord.Embed(title='Triggered')
+    em.set_image(url='https://media.giphy.com/media/vk7VesvyZEwuI/giphy.gif')
+    await client.send_message(ctx.message.channel, embed=em)
+
+client.run(config.bot_token)
