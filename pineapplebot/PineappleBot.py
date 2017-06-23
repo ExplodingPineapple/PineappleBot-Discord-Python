@@ -6,7 +6,7 @@ from discord.ext import commands
 import config
 
 DESCRIPTION = 'PineappleBot the Best Discord Bot!'
-BOT_PREFIX = '!'
+BOT_PREFIX = '?'
 BOT_VERSION = '0.0.1 alpha'
 
 logging.basicConfig(level=logging.INFO)
@@ -33,6 +33,17 @@ async def version():
     """Check the bot version."""
     await client.say('PineappleBot version : {}'.format(BOT_VERSION))
     await client.say('Running on Python version : {}'.format(sys.version))
+
+@client.command(pass_context=True)
+async def randomword(ctx):
+    """Posts random word from world site"""
+    await client.send_typing(ctx.message.channel)
+    word_site = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
+    response = urllib.request.urlopen(word_site)
+    txt = response.read()
+    WORDS = txt.splitlines()
+    word = str(random.choice(WORDS))
+    await client.say(word)
 
 @client.command()
 async def add(left: int, right: int):
