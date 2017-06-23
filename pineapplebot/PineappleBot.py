@@ -44,8 +44,8 @@ async def randomword(ctx):
     word_site = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
     response = request.urlopen(word_site)
     txt = response.read()
-    WORDS = txt.splitlines()
-    word = random.choice(WORDS)
+    words = txt.splitlines()
+    word = random.choice(words).decode('UTF-8')
     await client.say(word)
 
 addingcommands.registeraddingcommands(client)
