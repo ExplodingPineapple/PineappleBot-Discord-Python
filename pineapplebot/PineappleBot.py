@@ -6,6 +6,7 @@ import random
 import discord
 from discord.ext import commands
 import config
+import addingcommands
 
 DESCRIPTION = 'PineappleBot the Best Discord Bot!'
 BOT_PREFIX = '?'
@@ -47,24 +48,6 @@ async def randomword(ctx):
     word = random.choice(WORDS)
     await client.say(word)
 
-@client.command()
-async def add(left: int, right: int):
-    """Adds two numbers together."""
-    await client.say("{0} + {1} = {2}".format(left, right, left + right))
-
-@client.command()
-async def addadd(text: str):
-    """Adds Add to the input text."""
-    await client.say("Add " + text)
-
-@client.command()
-async def addnaddadd(left: int, right: int):
-    """Adds two numbers together and adds Add."""
-    await client.say("Add " + str(left + right))
-
-@client.command()
-async def addnaddaddnadd(left: int, right: int, text: str):
-    """Adds two numbers together and adds Add, then adds that to the input text."""
-    await client.say("Add {0} {1}".format(str(left + right), text))
+addingcommands.registeraddingcommands(client)
 
 client.run(config.BOT_TOKEN)
