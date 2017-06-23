@@ -1,6 +1,8 @@
 """A dumb bot."""
 import sys
 import logging
+import urllib
+import random
 import discord
 from discord.ext import commands
 import config
@@ -42,7 +44,7 @@ async def randomword(ctx):
     response = urllib.request.urlopen(word_site)
     txt = response.read()
     WORDS = txt.splitlines()
-    word = str(random.choice(WORDS))
+    word = random.choice(WORDS)
     await client.say(word)
 
 @client.command()
