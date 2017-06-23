@@ -6,6 +6,7 @@ import time
 import urllib.request
 import config
 import plugins.stream_alerts
+import plugins.memes
 import discord
 from discord.ext import commands
 
@@ -57,11 +58,13 @@ async def count():
 async def randomword(ctx):
     """Posts random word from world site"""
     await client.send_typing(ctx.message.channel)
-    word_site = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
-    response = urllib.request.urlopen(word_site)
-    txt = response.read()
-    WORDS = txt.splitlines()
-    word = random.choice(WORDS)
+    #word_site = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
+    #response = urllib.request.urlopen(word_site)
+    #txt = response.read()
+    #words = txt.splitlines()
+    word_file = "words"
+    words = open(word_file).read().splitlines()
+    word = random.choice(words)
     await client.say(word)
 
 @client.command(pass_context=True)
